@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <h1 class="mb-2">Create New Event</h1>
+        <p class="lead">Add a new event to the platform</p>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Event Title</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-heading" style="color: var(--primary);"></i>
+                                </span>
+                                <input type="text" name="title" class="form-control border-start-0" placeholder="Enter event title" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Date and Time</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-calendar-alt" style="color: var(--primary);"></i>
+                                    </span>
+                                    <input type="datetime-local" name="date" class="form-control border-start-0" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Venue</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+                                    </span>
+                                    <input type="text" name="venue" class="form-control border-start-0" placeholder="Event location" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Total Seats</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-chair" style="color: var(--primary);"></i>
+                                    </span>
+                                    <input type="number" name="total_seats" class="form-control border-start-0" min="1" placeholder="Number of seats" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Image URL <span class="text-muted">(Optional)</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-image" style="color: var(--primary);"></i>
+                                    </span>
+                                    <input type="url" name="image_url" class="form-control border-start-0" placeholder="https://example.com/image.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Description</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0" style="align-items: start; padding-top: 10px;">
+                                    <i class="fas fa-align-left" style="color: var(--primary);"></i>
+                                </span>
+                                <textarea name="description" class="form-control border-start-0" rows="5" placeholder="Describe your event"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between pt-3">
+                            <a href="{% url 'event_list' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4 py-2">
+                                <i class="fas fa-save me-2"></i>Create Event
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

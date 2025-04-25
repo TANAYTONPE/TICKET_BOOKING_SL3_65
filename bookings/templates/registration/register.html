@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center p-5">
+                    <i class="fas fa-user-plus fa-4x mb-3" style="color: var(--primary);"></i>
+                    <h2 class="mb-4">Create Account</h2>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-user" style="color: var(--primary);"></i>
+                                </span>
+                                {{ form.username }}
+                            </div>
+                            {% if form.username.errors %}
+                            <div class="text-start mt-1">
+                                <small class="text-danger">{{ form.username.errors }}</small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-lock" style="color: var(--primary);"></i>
+                                </span>
+                                {{ form.password1 }}
+                            </div>
+                            {% if form.password1.errors %}
+                            <div class="text-start mt-1">
+                                <small class="text-danger">{{ form.password1.errors }}</small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                </span>
+                                {{ form.password2 }}
+                            </div>
+                            {% if form.password2.errors %}
+                            <div class="text-start mt-1">
+                                <small class="text-danger">{{ form.password2.errors }}</small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2 mt-2">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="mt-4">
+                        <p>Already have an account? <a href="{% url 'login' %}" style="color: var(--primary); text-decoration: none; font-weight: 600;">Login Here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style the Django form fields to match our design */
+    #id_username, #id_password1, #id_password2 {
+        width: 100%;
+        padding: 10px 16px;
+        border: 1px solid #e1e4e8;
+        border-left: none;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    
+    #id_username:focus, #id_password1:focus, #id_password2:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255,165,2,0.2);
+    }
+    
+    .errorlist {
+        color: var(--primary);
+        padding-left: 0;
+        list-style: none;
+        text-align: left;
+        margin-top: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+{% endblock %}
